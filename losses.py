@@ -23,11 +23,7 @@ class Tailed_FocalLoss(nn.Module):
         
         
     def forward(self, probs, labels):
-        '''
-        formula for focal loss: average(-alpha*(1-Pt)log(Pt))
-        my probs = [[],[],[]]
-        tagert = [[31],[11],[3]]
-        '''
+        probs = F.softmax(probs, dim=1)
         Pt_index = labels.squeeze()
         Pt = probs[np.arange(len(Pt_index)), Pt_index]
         FL_loss = -((1-Pt) ** self.gamma) * torch.log2(Pt)
@@ -54,7 +50,7 @@ class FocalLoss(nn.Module):
         my probs = [[],[],[]]
         tagert = [[31],[11],[3]]
         '''
-
+        probs = F.softmax(probs, dim=1)
         Pt_index = labels.squeeze()
         Pt = probs[np.arange(len(Pt_index)), Pt_index]
         loss = -((1-Pt) ** self.gamma) * torch.log2(Pt)

@@ -23,10 +23,8 @@ DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 torch.set_default_dtype(torch.float32)
 torch.cuda.manual_seed_all(0)
 
-# CUDA_LAUNCH_BLOCKING=1
 
-
-def train(args, model, train_X, train_y, optimizer, loss_fn, grads=0):
+def train(args, model, train_X, train_y, optimizer, loss_fn):
     
     model.train()
     batch_size = args.batch_size
@@ -53,7 +51,6 @@ def train(args, model, train_X, train_y, optimizer, loss_fn, grads=0):
         loss.backward()
         optimizer.step()
         y_pred.extend(list(y_pred_batch.detach().cpu().numpy()))
-        # grads += record_grad(model)
         
     metrics = evaluate(args, y_pred, list(train_y), mode='train')
     metrics['loss'] = np.mean(losses)
@@ -308,7 +305,7 @@ def main(args):
         train_data_frq = df_ddis['labels_num'].value_counts()
         loss_fn = LDAMLoss(cls_num_list=train_data_frq.values)
     else:
-        raise Exception('Allowable loss: focalloss, crossentropy, tailedfocalloss')
+        raise Exception('No losses defined')
 
 
     if args.num_class != 171:
@@ -339,10 +336,10 @@ if __name__ == "__main__":
     parser.add_argument("--data_path", type=str, default='/media/nathan/DATA/1Adelaide/TFMD/dataset/171/')
     parser.add_argument("--feature_path", type=list, default=['graph', 'smiles', 'target', 'enzyme']) #
     parser.add_argument("--batch_size", type=int, default=2048)
-    parser.add_argument("--lr", type=float, default=0.0001)
+    parser.add_argument("--lr", type=float, default=0.003)
     parser.add_argument("--dropout", type=float, default=0.50)
-    parser.add_argument("--loss_function", type=str, default='LDAMloss')
-    parser.add_argument("--epochs", type=int, default=200)
+    parser.add_argument("--loss_function", type=str, default='tailedfocalloss')
+    parser.add_argument("--epochs", type=int, default=150)
     parser.add_argument("--cross-validate", type=str, default='stratified')
     
     
