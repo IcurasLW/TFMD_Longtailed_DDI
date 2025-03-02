@@ -18,7 +18,7 @@ The following specific environment needs to be installed. The model was runned o
 
 
 # Downloan dataset
-We offer five preprocessed and ready-to-use dataset in [Google Drive](https://drive.google.com/drive/folders/1iMUh6sIuXTA9zA-TedHRMFIm0OB72-vs?usp=sharing). The raw data of DDIMDL and MUFFIN can be download from their github repository [DDIMDL](https://github.com/YifanDengWHU/DDIMDL) and [MUFFIN](https://github.com/xzenglab/MUFFIN). We do not offer raw data of DrugBank as it is required to retrieve official authorization from DrugBank officials. See details [here](https://go.drugbank.com/releases/latest). The preprocessed scripts will be release soon.
+We offer five preprocessed and ready-to-use dataset in [Google Drive](https://drive.google.com/drive/folders/1988gJs_PpKSeMKNida4NtUmMTXujPzwA?usp=sharing). The raw data of DDIMDL and MUFFIN can be download from their github repository [DDIMDL](https://github.com/YifanDengWHU/DDIMDL) and [MUFFIN](https://github.com/xzenglab/MUFFIN). We do not offer raw data of DrugBank as it is required to retrieve official authorization from DrugBank officials. See details [here](https://go.drugbank.com/releases/latest). The preprocessed scripts will be release soon.
 
 # Retrieve Drugbank data and Cleaning
 We construct our dataset DBDDI-110 and DBDDI171 from drugbank raw dataset. We are working on cleaning the scraping scripts of the preprocessing drugbank dataset. It should be released soon.   ------- 21/07/2024
